@@ -4,7 +4,7 @@ zoomjoystrong.y
 Author Luke Bassett
 With help from Brian Moore
 */
-/*djslafjdkslafj*/
+/*Instantiates methods*/
 #include"zoomjoystrong.h"
 #include<stdio.h>
 #include<stdlib.h>
@@ -39,7 +39,7 @@ void end();
 %token <iVal> INT
 %token <fVal> FLOAT
 
-
+/* Defines grammar for lexer*/
 %%
 program:	statement_list END END_STATEMENT{end();}
 	|	END END_STATEMENT {end();}
@@ -67,15 +67,21 @@ int main(int argc, char ** argv)
   return 0;
 }
 
+/* yyerror catches all errors while errorFunction 
+*   catches specific syntax errors
+*/
 int yyerror(char* msg)
 {
   return fprintf(stderr, "%s\n", msg);
 }
 
 void errorFunction(){
-  fprintf(stderr, "An error has occured");
+  fprintf(stderr, "Input correct syntax");
 }
 
+/*Functions catch number errors and call
+*  functions from .c file
+*/
 void pointFunction(int x, int y){
 	if(x > WIDTH || y > HEIGHT){
 		yyerror("Point off Screen");
@@ -115,6 +121,7 @@ void setColorFunction(int r, int g, int b){
 	}
 }
 
+/* Calls finish for the drawing and exits command line*/
 void end()
 {
 	finish();

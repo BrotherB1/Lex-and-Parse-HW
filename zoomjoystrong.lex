@@ -12,7 +12,9 @@ With help from Brendan Cronan and Brian Moore
 
 %option noyywrap
 
+
 %%
+
 end		{
 		  return END;
 		}
